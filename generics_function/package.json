@@ -1,0 +1,11 @@
+{
+  "name": "generics_function",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "tsc app.ts && node app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
