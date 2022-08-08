@@ -22,6 +22,7 @@ A class is a blueprint from which we can create objects that share the same conf
 An interface is a group of related properties and methods that describe an objects, but neither provides implementation nor initialisation for them. 
 
 # Decoratord in typescript ?
+A Decorator is a special kind of declaration that can be attached to a class declaration, method, accessor, property, or parameter. Decorators use the form @expression , where expression must evaluate to a function that will be called at runtime with information about the decorated declaration.
 Command Line:
 tsc --target ES5 --experimentalDecorators
 or 
