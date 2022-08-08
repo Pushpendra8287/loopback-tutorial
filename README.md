@@ -1,4 +1,7 @@
 # loopback-tutorial
+# for automatic refresh loopback 4 url
+
+# https://stackoverflow.com/questions/54691759/how-to-watch-for-file-changes-in-loopback-4
 
 # if dublicate error then try
 export {}
@@ -17,4 +20,18 @@ A class is a blueprint from which we can create objects that share the same conf
 
 # What is Interface ?
 An interface is a group of related properties and methods that describe an objects, but neither provides implementation nor initialisation for them. 
+
+# Decoratord in typescript ?
+Command Line:
+tsc --target ES5 --experimentalDecorators
+or 
+tsconfig.json:
+
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "experimentalDecorators": true
+  }
+}
+
 

@@ -1,0 +1,11 @@
+{
+  "name": "decorators",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc --target ES5 --experimentalDecorators property_decorators.ts && node property_decorators.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

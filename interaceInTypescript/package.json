@@ -1,0 +1,11 @@
+{
+  "name": "interaceintypescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc app.ts && node app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
