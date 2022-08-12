@@ -8,11 +8,24 @@ export class Ecom extends Entity {
     generated: true,
   })
   _id?: string;
+  // @property({
+  //   type: 'number',
+  //   required: true,
+  //   generated: true,
+  // })
+  // id: number;
+
 
   @property({
     type: 'string',
     required: true,
-    index: { unique: true, }
+    jsonSchema: {
+      maxLength: 10,
+      minLength: 1,
+    },
+    index: { 
+      unique: true
+     },
   })
   name: string;
 
@@ -44,6 +57,14 @@ export class Ecom extends Entity {
     required: true,
   })
   photo: string;
+  @property({
+    type: "number",
+    required: true,
+    jsonSchema: {
+      pattern: "^[7-9][0-9]{9}$",
+    },
+  })
+  mobile: string;
 
 
   constructor(data?: Partial<Ecom>) {

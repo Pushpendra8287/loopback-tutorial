@@ -44,6 +44,7 @@ export class EcomController {
     })
     ecom: Omit<Ecom, '_id'>,
   ): Promise<Ecom> {
+
     return this.ecomRepository.create(ecom);
   }
 
@@ -75,6 +76,9 @@ export class EcomController {
   ): Promise<Ecom[]> {
     return this.ecomRepository.find(filter);
   }
+
+  
+
 
   @patch('/ecoms')
   @response(200, {
