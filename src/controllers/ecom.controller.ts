@@ -16,7 +16,9 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
+import { Console } from 'console';
 import {Ecom} from '../models';
 import {EcomRepository} from '../repositories';
 
@@ -45,6 +47,23 @@ export class EcomController {
     ecom: Omit<Ecom, '_id'>,
   ): Promise<Ecom> {
 
+let data =  await this.ecomRepository.findOne({where: {color: ecom.color}});
+if (data) {
+  throw new NotFound('user allready exist')
+}
+
+// if(data)
+// if(data){
+// //  throw new HttpErrors.BadRequest("Already exist");
+// console.log(data)
+
+// }
+// [4:44 PM] Hardik Rathore
+// findOne({where: {name: Ecomm.name}});
+
+
+
+// console.log('my dat',this.ecomRepository)
     return this.ecomRepository.create(ecom);
   }
 
@@ -72,14 +91,14 @@ export class EcomController {
     },
   })
   async find(
+    @param.path.number('mobile') mobile: number,
     @param.filter(Ecom) filter?: Filter<Ecom>,
   ): Promise<Ecom[]> {
+    // return this.ecomRepository.find({ where: ({mobile:mobile} )});
+    // await accountRepository.find({where: {name: 'John'}, limit: 3});
+    // return await this.ecomRepository.find({where: {or: [Ecom.]}});
     return this.ecomRepository.find(filter);
   }
-
-  
-
-
   @patch('/ecoms')
   @response(200, {
     description: 'Ecom PATCH success count',
@@ -112,7 +131,9 @@ export class EcomController {
     @param.path.string('id') id: string,
     @param.filter(Ecom, {exclude: 'where'}) filter?: FilterExcludingWhere<Ecom>
   ): Promise<Ecom> {
-    return this.ecomRepository.findById(id, filter);
+    // let email = await this.ecomRepository.findOne() 
+    // console.log('my dat',this.ecomRepository)
+    return this.ecomRepository.findById(id);
   }
 
   @patch('/ecoms/{id}')
@@ -150,5 +171,15 @@ export class EcomController {
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.ecomRepository.deleteById(id);
+  }
+}
+
+
+class NotFound extends Error {
+  statusCode: number
+
+  constructor(message: string) {
+    super(message)
+    this.statusCode = 400
   }
 }

@@ -8,21 +8,15 @@ export class Ecom extends Entity {
     generated: true,
   })
   _id?: string;
-  // @property({
-  //   type: 'number',
-  //   required: true,
-  //   generated: true,
-  // })
-  // id: number;
-
+ 
 
   @property({
     type: 'string',
     required: true,
-    jsonSchema: {
-      maxLength: 10,
-      minLength: 1,
-    },
+    // jsonSchema: {
+    //   maxLength: 10,
+    //   minLength: 1,
+    // },
     index: { 
       unique: true
      },
@@ -31,8 +25,9 @@ export class Ecom extends Entity {
 
   @property({
     type: 'string',
+    required: true,
   })
-  color?: string;
+  color: string;
 
   @property({
     type: 'number',
