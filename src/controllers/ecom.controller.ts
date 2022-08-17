@@ -18,15 +18,15 @@ import {
   response,
   HttpErrors,
 } from '@loopback/rest';
-import { Console } from 'console';
+import {Console} from 'console';
 import {Ecom} from '../models';
 import {EcomRepository} from '../repositories';
 
 export class EcomController {
   constructor(
     @repository(EcomRepository)
-    public ecomRepository : EcomRepository,
-  ) {}
+    public ecomRepository: EcomRepository,
+  ) { }
 
   @post('/ecoms')
   @response(200, {
@@ -47,23 +47,24 @@ export class EcomController {
     ecom: Omit<Ecom, '_id'>,
   ): Promise<Ecom> {
 
-let data =  await this.ecomRepository.findOne({where: {color: ecom.color}});
-if (data) {
-  throw new NotFound('user allready exist')
-}
-
-// if(data)
-// if(data){
-// //  throw new HttpErrors.BadRequest("Already exist");
-// console.log(data)
-
-// }
-// [4:44 PM] Hardik Rathore
-// findOne({where: {name: Ecomm.name}});
+    let data = await this.ecomRepository.findOne({where: {color: Ecom.color}});
+    if (data) {
+      throw new NotFound('user allready exist')
+    }
 
 
+    // if(data)
+    // if(data){
+    // //  throw new HttpErrors.BadRequest("Already exist");
+    // console.log(data)
 
-// console.log('my dat',this.ecomRepository)
+    // }
+    // [4:44 PM] Hardik Rathore
+    // findOne({where: {name: Ecomm.name}});
+
+
+
+    // console.log('my dat',this.ecomRepository)
     return this.ecomRepository.create(ecom);
   }
 
@@ -91,13 +92,25 @@ if (data) {
     },
   })
   async find(
-    @param.path.number('mobile') mobile: number,
+    // @param.path.number('mobile') mobile: number,
     @param.filter(Ecom) filter?: Filter<Ecom>,
   ): Promise<Ecom[]> {
     // return this.ecomRepository.find({ where: ({mobile:mobile} )});
     // await accountRepository.find({where: {name: 'John'}, limit: 3});
     // return await this.ecomRepository.find({where: {or: [Ecom.]}});
-    return this.ecomRepository.find(filter);
+  //  let data =  await this.ecomRepository.find({where: {or: [{name: Ecom.name, color: Ecom.color}]}})
+  //  let data = await this.ecomRepository.find({filter:{where:name=Ecom.name}});
+//    filter = {
+//     where: {
+//       color: Ecom.color
+//     }
+//  };
+
+//  const result = await this.ecomRepository.findOne(filter);
+return this.ecomRepository.find({ where: { name: EcomController.name } },filter)
+
+    // return result
+    // return this.ecomRepository.find(filter);
   }
   @patch('/ecoms')
   @response(200, {
@@ -131,7 +144,7 @@ if (data) {
     @param.path.string('id') id: string,
     @param.filter(Ecom, {exclude: 'where'}) filter?: FilterExcludingWhere<Ecom>
   ): Promise<Ecom> {
-    // let email = await this.ecomRepository.findOne() 
+    // let email = await this.ecomRepository.findOne()
     // console.log('my dat',this.ecomRepository)
     return this.ecomRepository.findById(id);
   }
@@ -176,10 +189,20 @@ if (data) {
 
 
 class NotFound extends Error {
-  statusCode: number
+  statusCode: number;
+  msg: string;
 
   constructor(message: string) {
     super(message)
     this.statusCode = 400
+    this.msg = "Allready exist"
   }
 }
+function hi(): any {
+  return {
+    msg: "AllReady Exists",
+    // status: 400
+  }
+
+}
+

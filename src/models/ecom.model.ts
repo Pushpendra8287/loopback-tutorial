@@ -8,7 +8,7 @@ export class Ecom extends Entity {
     generated: true,
   })
   _id?: string;
- 
+
 
   @property({
     type: 'string',
@@ -17,7 +17,7 @@ export class Ecom extends Entity {
     //   maxLength: 10,
     //   minLength: 1,
     // },
-    index: { 
+    index: {
       unique: true
      },
   })
@@ -60,6 +60,7 @@ export class Ecom extends Entity {
     },
   })
   mobile: string;
+  static color: any;
 
 
   constructor(data?: Partial<Ecom>) {
